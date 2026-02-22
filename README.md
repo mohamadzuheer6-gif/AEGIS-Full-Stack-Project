@@ -1,73 +1,186 @@
-# AEGIS - Campus Grievance & Opportunity Management Platform
+# AEGIS – Full-Stack Campus Grievance & Opportunity Management Platform
 
-A comprehensive institutional platform for managing student grievances, academic resources, and internship opportunities.
-## Deployed Link
+A comprehensive full-stack institutional platform designed to manage student grievances, academic resources, internship opportunities, and faculty-student communication within a university ecosystem.
+
+🔗 **Live Deployment:**  
 https://aegis-krack-hack.vercel.app/
-## Features
 
-### Pillar I & II: Identity & Grievance Management
+---
+
+## 🚀 Overview
+
+AEGIS is a modular full-stack web application built using a React frontend and Node.js/Express backend, with PostgreSQL for relational data persistence.
+
+The system implements:
+
+- Role-based access control (RBAC)
+- JWT-based authentication
+- RESTful API architecture
+- Relational database modeling
+- Real-time grievance tracking
+- Opportunity lifecycle management
+- Task and communication systems
+
+---
+
+## 🏗️ System Architecture
+
+```
+Client Layer
+    React (Vite + Tailwind CSS)
+        ↓
+Application Layer
+    Node.js + Express.js (REST API)
+        ↓
+Authentication Layer
+    JWT (Role-based Access Control)
+        ↓
+Database Layer
+    PostgreSQL
+        ├── Users
+        ├── Grievances
+        ├── Academic Events
+        ├── Opportunities
+        ├── Applications
+        ├── Bookmarks
+        ├── Tasks
+        └── Opportunity Messages
+```
+
+---
+
+## 🎯 Core Functional Pillars
+
+### 🔹 Pillar I & II – Identity & Grievance Management
+
 - Submit grievances anonymously or with identity
-- Real-time grievance tracking and status updates
-- Authority dashboard for grievance management
-- Role-based access control (Student, Faculty, Authority, Admin)
+- Status tracking & updates
+- Authority dashboard for review & action
+- Department-level grievance management
+- Role-based permission enforcement
 
-### Pillar III: Chronos Calendar & Academics
-- Centralized academic calendar with events and deadlines
-- Vault of Knowledge for academic resources and past papers
-- Destiny Manager for course tracking and credits
+---
 
-### Pillar IV: Opportunities & Scholar's Ledger
-- Faculty portal for posting internship and research opportunities
-- Student opportunity browser with filtering by skills, duration, stipend
-- Resume-based applications with status tracking
-- Bookmark opportunities for later
-- Scholar's Ledger for personal task management
-- Inbox for faculty-student communication
+### 🔹 Pillar III – Chronos Calendar & Academic Tools
 
-## Tech Stack
+- Centralized academic calendar
+- Event & deadline tracking
+- Vault of Knowledge (academic resources & past papers)
+- Destiny Manager (course tracking & credits)
+
+---
+
+### 🔹 Pillar IV – Opportunities & Scholar’s Ledger
+
+- Faculty internship & research postings
+- Student filtering by skills, duration, stipend
+- Resume-based application tracking
+- Bookmarking system
+- Scholar’s Ledger task manager
+- Faculty-student inbox messaging
+
+---
+
+## 🧠 Engineering Highlights (Full-Stack Focus)
+
+- Modular backend architecture (controllers, routes, middleware separation)
+- Secure JWT-based authentication
+- Relational PostgreSQL schema design
+- Role-based authorization middleware
+- Scalable REST API design
+- File upload handling using Multer
+- Protected frontend routes using React Router
+- API service abstraction layer in frontend
+- Deployment-ready environment configuration
+
+---
+
+## 🛠️ Tech Stack
 
 ### Backend
-- **Runtime**: Node.js
-- **Framework**: Express.js
-- **Database**: PostgreSQL
-- **Authentication**: JWT (JSON Web Tokens)
-- **File Upload**: Multer
+- Node.js
+- Express.js
+- PostgreSQL
+- JWT Authentication
+- Multer (File Uploads)
 
 ### Frontend
-- **Framework**: React 18
-- **Build Tool**: Vite
-- **Styling**: Tailwind CSS
-- **HTTP Client**: Fetch API
-- **Routing**: React Router v6
+- React 18
+- Vite
+- Tailwind CSS
+- React Router v6
+- Fetch API
 
-## Project Structure
+---
+
+## 📂 Project Structure
 
 ```
 aegis/
-├── aegis-backend/          # Node.js/Express backend
-│   ├── controllers/        # Business logic
-│   ├── middleware/         # Auth and custom middleware
-│   ├── routes/            # API endpoints
-│   ├── db.js              # Database configuration
-│   ├── server.js          # Server entry point
+├── aegis-backend/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── routes/
+│   ├── db.js
+│   ├── server.js
 │   └── package.json
-├── aegis-frontend/        # React/Vite frontend
+│
+├── aegis-frontend/
 │   ├── src/
-│   │   ├── components/    # Reusable components (Navbar, Sidebar, etc.)
-│   │   ├── pages/         # Page components
-│   │   ├── services/      # API service layer
-│   │   └── App.jsx        # Main app component
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   └── App.jsx
 │   └── package.json
+│
 ├── .gitignore
 └── README.md
 ```
 
-## Installation & Setup
+---
+
+## 🗄️ Database Schema
+
+Core relational tables:
+
+- `users` – Role-based user accounts
+- `grievances` – Grievance records & status tracking
+- `academic_events` – Calendar events
+- `opportunities` – Internship & research listings
+- `applications` – Student applications
+- `bookmarks` – Saved opportunities
+- `tasks` – Scholar’s Ledger tasks
+- `opportunity_messages` – Faculty-student communication
+
+---
+
+## 🔐 Authentication & Authorization
+
+- JWT stored in `localStorage['aegis_token']`
+- JWT payload contains:
+  ```
+  { id, user_id, email, role, iat, exp }
+  ```
+- Protected routes require:
+  ```
+  Authorization: Bearer <token>
+  ```
+- Role-based access:
+  - Student
+  - Faculty
+  - Authority
+  - Admin
+
+---
+
+## ⚙️ Installation & Setup
 
 ### Prerequisites
-- Node.js 16+ and npm
-- PostgreSQL database
+- Node.js 16+
+- PostgreSQL
 - Git
+
+---
 
 ### Backend Setup
 
@@ -77,6 +190,7 @@ npm install
 ```
 
 Create a `.env` file:
+
 ```
 DB_HOST=localhost
 DB_PORT=5432
@@ -86,12 +200,15 @@ DB_PASS=your_db_password
 JWT_SECRET=your_jwt_secret_key
 NODE_ENV=development
 PORT=5000
-VITE_API_BASE=http://localhost:5000
 ```
+
+Run backend:
 
 ```bash
 npm start
 ```
+
+---
 
 ### Frontend Setup
 
@@ -101,100 +218,64 @@ npm install
 npm run dev
 ```
 
-Visit `http://localhost:5173` in your browser.
+Visit:
 
-## API Endpoints
-
-### Authentication
-- `POST /api/auth/register` - Register new user
-- `POST /api/auth/login` - User login
-- `GET /api/auth/me` - Get current user info
-
-### Grievances (Pillar I & II)
-- `POST /api/grievances` - Submit grievance
-- `GET /api/grievances` - List user's grievances
-- `PUT /api/grievances/:id` - Update grievance
-- `GET /api/authority/grievances` - Authority dashboard
-
-### Opportunities (Pillar IV)
-- `GET /api/opportunities` - List opportunities with filters
-- `POST /api/opportunities` - Create opportunity (Faculty)
-- `POST /api/applications` - Apply to opportunity
-- `GET /api/applications` - View applications
-- `POST /api/bookmarks` - Bookmark opportunity
-- `GET /api/bookmarks` - View bookmarks
-- `POST /api/tasks` - Create task for Scholar's Ledger
-- `GET /api/tasks` - View tasks
-- `GET /api/opportunity_messages` - View messages
-
-## Database Tables
-
-### Core Tables
-- `users` - User accounts with roles and permissions
-- `grievances` - Submitted grievances and status tracking
-- `academic_events` - Calendar events
-- `opportunities` - Internship and research opportunities
-- `applications` - Student applications to opportunities
-- `bookmarks` - Saved opportunities
-- `tasks` - Scholar's Ledger tasks
-- `opportunity_messages` - Faculty-student communication
-
-## Authentication
-
-The application uses JWT for authentication:
-- Tokens stored in `localStorage['aegis_token']`
-- JWT payload contains: `{id, user_id, email, role, iat, exp}`
-- All protected routes require valid token in `Authorization: Bearer <token>` header
-
-## User Roles
-
-- **Student**: Can submit grievances, browse opportunities, apply, track applications
-- **Faculty**: Can post opportunities, review applications, communicate with students
-- **Authority**: Can view and manage all grievances, assign to departments
-- **Admin**: Full system access
-
-## Development
-
-### Running Tests
-```bash
-cd aegis-backend
-npm test
 ```
-
-### Build Frontend
-```bash
-cd aegis-frontend
-npm run build
+http://localhost:5173
 ```
-
-## Deployment
-
-### Backend (Node.js)
-- Deploy to Heroku, AWS, or DigitalOcean
-- Ensure environment variables are configured
-- Database must be accessible from server
-
-### Frontend
-- Build with `npm run build`
-- Deploy `dist/` folder to static hosting (Vercel, Netlify, AWS S3 + CloudFront)
-- Update API base URL in environment variables
-
-## Contributing
-
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit changes (`git commit -m 'Add AmazingFeature'`)
-4. Push to branch (`git push origin feature/AmazingFeature`)
-5. Open Pull Request
-
-## License
-
-This project is licensed under the MIT License - see LICENSE file for details.
-
-## Support & Contact
-
-For issues, questions, or suggestions, please open an issue on GitHub or contact the development team.
 
 ---
 
-**AEGIS** - Empowering Campus Communities through Transparent Grievance Management and Opportunity Access
+## 📦 Deployment
+
+### Backend
+- Deploy to AWS / Render / DigitalOcean
+- Configure environment variables
+- Ensure PostgreSQL access
+
+### Frontend
+- Build with:
+  ```bash
+  npm run build
+  ```
+- Deploy `dist/` folder to Vercel / Netlify
+- Update API base URL accordingly
+
+---
+
+## 👥 User Roles
+
+| Role      | Capabilities |
+|-----------|--------------|
+| Student   | Submit grievances, apply to opportunities, manage tasks |
+| Faculty   | Post opportunities, review applications, message students |
+| Authority | Manage grievances, assign & update statuses |
+| Admin     | Full system control |
+
+---
+
+## 🧪 Development
+
+Run backend tests:
+
+```bash
+npm test
+```
+
+Build frontend:
+
+```bash
+npm run build
+```
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+## ✨ AEGIS
+
+Empowering campus communities through transparent grievance resolution and structured opportunity access.
